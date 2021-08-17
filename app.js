@@ -2,6 +2,7 @@ var fs = require('fs');
 var readline = require('readline');
 var { google } = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
+const input = require("input")
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/youtube-nodejs-quickstart.json
@@ -17,7 +18,7 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
         return;
     }
     // Authorize a client with the loaded credentials, then call the YouTube API.
-    authorize(JSON.parse(content), getChannel);
+    //authorize(JSON.parse(content), getChannel);
     authorize(JSON.parse(content), getComments);
 });
 
@@ -134,7 +135,7 @@ const getComments = async (auth) => {
         const result = await youtube.commentThreads.list({
             auth,
             part: "snippet",
-            videoId: "LssBfg0ss6w",
+            videoId: await input.text("Input Video id"),
             maxResults: 100,
             pageToken,
             order: "relevance"
