@@ -165,7 +165,7 @@ const getComments = async (auth) => {
         }
     }
     fs.writeFileSync("test2.json", JSON.stringify(replies, null, 2));
-    const spamLinks = JSON.parse(fs.readFileSync("spanLink.json"));
+    const spamLinks = JSON.parse(fs.readFileSync("spamLink.json"));
     const spamComments = replies.filter(comment => spamLinks.some(link => comment.snippet.textOriginal.indexOf(link) !== -1));
     fs.writeFileSync("spam.json", JSON.stringify(spamComments, null, 2));
 
